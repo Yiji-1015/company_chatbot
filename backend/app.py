@@ -1,13 +1,13 @@
 # backend/app.py
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from qdrant_client import QdrantClient
 from openai import OpenAI
+import streamlit as st
 
-load_dotenv()
-upstage_api_key = os.getenv("UPSTAGE_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
+# load_dotenv()
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 client_oa = OpenAI(api_key=OPENAI_API_KEY)
 # Qdrant 클라이언트 (로컬)
 client_qd = QdrantClient(
@@ -87,7 +87,7 @@ def rag_answer(question: str) -> str:
     )
 
     resp = client_oa.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-5",
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},

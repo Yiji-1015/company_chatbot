@@ -9,6 +9,7 @@ import os
 #     │    └─ app.py (여기에 rag_answer 있음)
 #     └─ frontend/
 #          └─ app.py (이 파일)
+
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if ROOT_DIR not in sys.path:
     sys.path.append(ROOT_DIR)
@@ -47,3 +48,5 @@ if user_input:
 
     # 3) 히스토리에 어시스턴트 답변 저장
     st.session_state["messages"].append(("assistant", answer))
+
+# streamlit run app.py 
